@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<hazelcast xsi:schemaLocation=
+                   "http://www.hazelcast.com/schema/config hazelcast-config-3.7.xsd"
+           xmlns="http://www.hazelcast.com/schema/config"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <network>
+        <port auto-increment="true" port-count="20">5701</port>
+        <join>
+            <multicast enabled="true">
+                <multicast-group>224.2.2.3</multicast-group>
+                <multicast-port>54327</multicast-port>
+                <multicast-time-to-live>32</multicast-time-to-live>
+                <multicast-timeout-seconds>2</multicast-timeout-seconds>
+<!--                <trusted-interfaces>-->
+<!--                    <interface>192.168.1.102</interface>-->
+<!--                </trusted-interfaces>-->
+            </multicast>
+            <tcp-ip enabled="false">
+                <member>hazelcast1.local.com</member>
+                <member>hazelcast2.local.com</member>
+<!--                <member>ec2-13-125-151-132.ap-northeast-2.compute.amazonaws.com</member>-->
+<!--                <member>ec2-13-125-97-134.ap-northeast-2.compute.amazonaws.com</member>-->
+            </tcp-ip>
+        </join>
+    </network>
+    <map name="heroes">
+        <max-size>300</max-size>
+        <eviction-policy>LFU</eviction-policy>
+        <time-to-live-seconds>120</time-to-live-seconds>
+        <eviction-percentage>25</eviction-percentage>
+    </map>
+<!--    <management-center enabled="true">-->
+<!--        http://119.205.221.42:8082/mancenter-->
+<!--    </management-center>-->
+
+        <management-center enabled="true">
+            http://hazelcast1.local.com:8080/mancenter
+        </management-center>
+</hazelcast>

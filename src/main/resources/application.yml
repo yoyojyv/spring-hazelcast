@@ -1,0 +1,49 @@
+spring:
+  cache:
+    type: hazelcast
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8011/eureka/
+    healthcheck:
+      enabled: true
+
+  instance:
+    lease-renewal-interval-in-seconds: 10
+    lease-expiration-duration-in-seconds: 20
+
+#    metadata-map:
+#      user.name: ${security.user.actuator.username}
+#      user.password: ${security.user.actuator.password}
+
+spring.boot.admin.client:
+  url: http://localhost:8000
+
+
+# ================== logging ==================
+# sleuth
+logging.level.org.springframework.cloud.sleuth: DEBUG
+
+
+
+# ================== cache ==================
+cache:
+#  instance-name: cache-hero-instance
+#  network:
+#    port: 5701
+#    port-auto-increment: true
+#    port-count: 20
+#
+#  multicast:
+#    enabled: true
+#    group: 224.2.2.3
+#    port: 54327
+#    ttl: 32
+#    timeout-seconts: 2
+
+  cache-names:
+    - heroes
+    - properties
+
+
